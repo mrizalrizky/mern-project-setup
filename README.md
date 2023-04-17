@@ -1,6 +1,4 @@
-#MERN Project Setup
-
-## This repo is for MERN Project Setup implementing MVC and Microservices pattern
+## This repo is for Backend MERN Project Setup implementing MVC and Microservices pattern
 
 ### This setup includes :
 #### [axios](https://www.npmjs.com/package/axios)
