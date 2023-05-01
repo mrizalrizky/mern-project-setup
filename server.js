@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const Log = require('./app/utils/Logging')
-const package = require('./package.json')
+const jsonMessage = require('./app/jsonFormat/jsonMessage')
 require('dotenv').config()
 
 const corsOptions = { origin: '*'}
@@ -17,7 +17,11 @@ app.use(Log.printLog())
 require('./app/routes/index')(app)
 
 app.use('/api/health-check', (req, res) => {
-    res.status(200).send(`Welcome to ${package.name}`)
+    res.status(200).send(`Welcome`)
+})
+
+app.use('*', (req, res) => {
+    res.status(404).send(jsonMessage.jsonFailed(404, `Route ${req.method} ${req.baseUrl} not found`))
 })
 
 const PORT = 4000
