@@ -1,8 +1,6 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
-const swaggerUi = require('swagger-ui-express')
-const swaggerDocs = require('./swagger.json')
 const Log = require('./app/utils/Logging')
 const jsonMessage = require('./app/jsonFormat/jsonMessage')
 require('dotenv').config()
@@ -15,13 +13,8 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use(Log.printLog())
 
-app.use('/api-docs', (req, res) => {
-    swaggerUi.serve
-    , swaggerUi.setup(swaggerDocs)
-})
 // Routes
 require('./app/routes/index')(app)
-
 
 app.use('/api/health-check', (req, res) => {
     res.status(200).send(`Welcome`)
